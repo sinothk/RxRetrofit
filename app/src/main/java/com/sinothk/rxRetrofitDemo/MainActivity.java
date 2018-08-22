@@ -104,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
 //                        }
 //                    }
 //                });
-
         RetrofitFactory.init(BaseApi.baseUrl, BaseApi.getHeaderData())
                 .create(NearbyApi.class)
                 .findUsersByKeyword("38")
