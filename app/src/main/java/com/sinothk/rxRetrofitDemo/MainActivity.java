@@ -5,11 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.sinothk.rxRetrofitDemo.retrofit.BaseApi;
 import com.sinothk.rxRetrofitDemo.retrofit.NearbyApi;
-import com.sinothk.rxRetrofitDemo.retrofit.RetrofitFactory;
 import com.sinothk.rxRetrofitDemo.retrofit.bean.UserEntity;
 import com.sinothk.rxRetrofitDemo.retrofit.temp.ResultData;
+import com.sinothk.rxretrofit.RetrofitFactory;
 
+import java.util.HashMap;
 import java.util.List;
 
 import rx.Subscriber;
@@ -74,11 +76,46 @@ public class MainActivity extends AppCompatActivity {
 //        RequestBody jsonBody = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), jsonStr);
 //
 
-        RetrofitFactory.init().create(NearbyApi.class)
+//        RetrofitFactory.init("http://192.168.124.26:8888/").create(NearbyApi.class)
+//                .findUsersByKeyword("38")
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Subscriber<ResultData<List<UserEntity>>>() {
+//                    @Override
+//                    public void onCompleted() {
+//                        Toast.makeText(MainActivity.this, "onCompleted", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        Toast.makeText(MainActivity.this, "onError", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                    @Override
+//                    public void onNext(ResultData<List<UserEntity>> resultData) {
+//                        if (resultData != null) {
+//                            List<UserEntity> userList = resultData.getData();
+//
+//                            if (userList != null && userList.size() > 0) {
+//                                Log.e("onNext", userList.get(0).getEmail());
+//                            } else {
+//                                Log.e("onNext", "onError ... ");
+//                            }
+//                        }
+//                    }
+//                });
+
+        RetrofitFactory.init(BaseApi.baseUrl, BaseApi.getHeaderData())
+                .create(NearbyApi.class)
                 .findUsersByKeyword("38")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<ResultData<List<UserEntity>>>() {
+                    @Override
+                    public void onStart() {
+                        Toast.makeText(MainActivity.this, "onStart", Toast.LENGTH_SHORT).show();
+                    }
+
                     @Override
                     public void onCompleted() {
                         Toast.makeText(MainActivity.this, "onCompleted", Toast.LENGTH_SHORT).show();
