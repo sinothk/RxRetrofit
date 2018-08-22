@@ -1,14 +1,13 @@
 package com.sinothk.rxRetrofitDemo.retrofit;
 
 
-import com.sinothk.rxRetrofitDemo.retrofit.temp.PageInfo;
+import com.sinothk.rxRetrofitDemo.retrofit.bean.UserEntity;
 import com.sinothk.rxRetrofitDemo.retrofit.temp.ResultData;
-import com.sinothk.rxRetrofitDemo.retrofit.temp.UserEntity;
 
-import okhttp3.RequestBody;
-import retrofit2.http.Body;
-import retrofit2.http.Headers;
+import java.util.List;
+
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -25,8 +24,6 @@ public interface NearbyApi {
 //    @GET("open/api/weather/json.shtml")
 //    Call<RootData<PageInfo<UserBean>>> weather(@Query("city") String cityName);
 
-    @POST("nearby/nearbyUserList")
-    Observable<ResultData<PageInfo>> nearbyUserList();//@Body RequestBody jsonBody
-
-
+    @POST("ol/user/findUsersByKeyword")
+    Observable<ResultData<List<UserEntity>>> findUsersByKeyword(@Query("keyword") String keyword); //@Body RequestBody jsonBody
 }

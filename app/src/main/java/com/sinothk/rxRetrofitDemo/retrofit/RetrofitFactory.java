@@ -32,7 +32,7 @@ public class RetrofitFactory {
         return new Retrofit.Builder()
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("http://192.168.2.135:8080/")
+                .baseUrl("http://192.168.124.16:8888/")
                 .build();
     }
 }

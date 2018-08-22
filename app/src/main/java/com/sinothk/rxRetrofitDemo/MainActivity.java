@@ -7,8 +7,12 @@ import android.widget.Toast;
 
 import com.sinothk.rxRetrofitDemo.retrofit.NearbyApi;
 import com.sinothk.rxRetrofitDemo.retrofit.RetrofitFactory;
+import com.sinothk.rxRetrofitDemo.retrofit.bean.UserEntity;
 import com.sinothk.rxRetrofitDemo.retrofit.temp.PageInfo;
 import com.sinothk.rxRetrofitDemo.retrofit.temp.ResultData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -73,10 +77,10 @@ public class MainActivity extends AppCompatActivity {
 //
 
         RetrofitFactory.init().create(NearbyApi.class)
-                .nearbyUserList()
+                .findUsersByKeyword("38")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<ResultData<PageInfo>>() {
+                .subscribe(new Subscriber<ResultData<List<UserEntity>>>() {
                     @Override
                     public void onCompleted() {
                         Toast.makeText(MainActivity.this, "onCompleted", Toast.LENGTH_SHORT).show();
@@ -88,22 +92,17 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onStart() {
-                        Toast.makeText(MainActivity.this, "onStart", Toast.LENGTH_SHORT).show();
-                    }
+                    public void onNext(ResultData<List<UserEntity>> resultData) {
+                        if (resultData != null) {
+                            List<UserEntity> userList = resultData.getData();
 
-                    @Override
-                    public void onNext(ResultData<PageInfo> rootData) {
-
-                        Log.e("rootData", "============ rootData ============" + rootData.getMsg());
-
-//                        if (rootData == null) {
-//
-//                        }
-
-//                        Toast.makeText(MainActivity.this, "" + rootData.getData().getForecast().size(), Toast.LENGTH_SHORT).show();
+                            if (userList != null && userList.size() > 0) {
+                                Log.e("onNext", userList.get(0).getEmail());
+                            } else {
+                                Log.e("onNext", "onError ... ");
+                            }
+                        }
                     }
                 });
-
     }
 }
