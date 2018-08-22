@@ -8,10 +8,8 @@ import android.widget.Toast;
 import com.sinothk.rxRetrofitDemo.retrofit.NearbyApi;
 import com.sinothk.rxRetrofitDemo.retrofit.RetrofitFactory;
 import com.sinothk.rxRetrofitDemo.retrofit.bean.UserEntity;
-import com.sinothk.rxRetrofitDemo.retrofit.temp.PageInfo;
 import com.sinothk.rxRetrofitDemo.retrofit.temp.ResultData;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import rx.Subscriber;
