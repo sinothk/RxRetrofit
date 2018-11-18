@@ -1,6 +1,24 @@
 # RxRetrofit
 RxRetrofit
 
+# 初始化：
+    RetrofitFactory.init(BaseApi.baseUrl);
+    RetrofitFactory.init(BaseApi.baseUrl, BaseApi.getHeaderData());
+
+  ## BaseApi
+    public class BaseApi {
+
+      public static String baseUrl = "http://192.168.2.135:8888/";
+
+      public static HashMap<String, String> getHeaderData() {
+          HashMap<String, String> headerDataMap = new HashMap<>();
+          headerDataMap.put("token", "112233445566778899");
+          headerDataMap.put("userCode", "381518188");
+          headerDataMap.put("userName", "LiangYT");
+          return headerDataMap;
+        }
+    }
+
 # 提交表单：
   
    ## API:
