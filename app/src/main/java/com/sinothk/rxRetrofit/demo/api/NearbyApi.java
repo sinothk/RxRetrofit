@@ -7,6 +7,7 @@ import com.sinothk.rxretrofit.bean.ResultData;
 
 import java.util.List;
 
+import retrofit2.http.Body;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 import rx.Observable;
@@ -31,4 +32,7 @@ public interface NearbyApi {
 
     @POST("slogan/user/findUsersByKeyword")
     Observable<ResultData<PageData<List<UserEntity>>>> findUsersByKeyword(@Query("keyword") String keyword);
+
+    @POST("slogan/user/updateUser")
+    Observable<ResultData<UserEntity>> updateUser(@Body UserEntity user);
 }
