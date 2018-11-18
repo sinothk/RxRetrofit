@@ -1,14 +1,14 @@
-package com.sinothk.rxRetrofitDemo.retrofit.bean;
+package com.sinothk.rxretrofit.bean;
 
 public class ResultData<T> {
-    private static final int codeSuccess = 0;
-    private static final int codeError = 1;
-
     private int code;
     private String msg;
     private T data;
 
-    private ResultData(int code, String msg, T data) {
+    public ResultData() {
+    }
+
+    public ResultData(int code, String msg, T data) {
         this.code = code;
         this.msg = msg;
         this.data = data;
@@ -36,13 +36,5 @@ public class ResultData<T> {
 
     public void setData(T data) {
         this.data = data;
-    }
-
-    public static ResultData getSuccess(String msg, Object data) {
-        return new ResultData(codeSuccess, msg, data);
-    }
-
-    public static ResultData getError(String msg) {
-        return new ResultData(codeError, msg, null);
     }
 }
