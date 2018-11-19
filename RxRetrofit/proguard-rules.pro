@@ -20,6 +20,7 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
+#retrofit2  混淆
 -dontwarn javax.annotation.**
 -dontwarn javax.inject.**
 # OkHttp3
@@ -29,7 +30,8 @@
 # Retrofit
 -dontwarn retrofit2.**
 -keep class retrofit2.** { *; }
--keepattributes Signature-keepattributes Exceptions
+-keepattributes Signature
+-keepattributes Exceptions
 # RxJava RxAndroid
 -dontwarn sun.misc.**
 -keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
@@ -46,4 +48,6 @@
 # Gson
 -keep class com.google.gson.stream.** { *; }
 -keepattributes EnclosingMethod
--keep class com.sinothk.rxretrofit.bean.**{*;}
+#-keep class com.mvp.entitry.**{*;}//改成自己的实体类包
+#例如：-keep class com.smartpos.payhero.txb.bean.**{*;}
+
