@@ -16,12 +16,10 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * <pre>
- *  创建:  LiangYT 2018/6/23/023 on 0:48
- *  项目: RxRetrofitLib
- *  描述: 创建Retrofit对象
- *  更新:
- * <pre>
+ * author : 梁玉涛
+ * e-mail : 381518188@qq.com
+ * date   : 2018/11/1911:02
+ * desc   :
  */
 public class RetrofitFactory {
 
