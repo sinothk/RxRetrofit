@@ -100,3 +100,23 @@ RxRetrofit
         return userService.updateUser(user);
     }
  
+# 上传：
+   ## 单文件
+    @Multipart
+    @POST("slogan/user/updateUserAvatar")
+    Observable<ResultData<UserEntity>> uploadFile(@Query("userCode") String userCode, @Part MultipartBody.Part file);
+    
+    // 传单文件文件和键值对
+    File file = new File("/storage/emulated/0/Download/wKgANVvEPSeASGEFAAQ7wQP8jK4342.png");
+    RetrofitFactory.init(BaseApi.baseUrl).create(AllApi.class)
+            .uploadFile("381518188", RetrofitParam.createFileParam("file", file))
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Subscriber<ResultData<UserEntity>>() {
+            });
+     后台：       
+    @PostMapping("/updateUserAvatar")
+    public ResultData updateUserAvatar(@RequestParam("userCode") String userCode, @RequestParam("file") MultipartFile avatarFile){}
+    
+    
+            
