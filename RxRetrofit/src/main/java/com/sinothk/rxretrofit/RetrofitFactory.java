@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import okhttp3.Headers;
 import okhttp3.Interceptor;
@@ -87,6 +89,24 @@ public class RetrofitFactory {
 
         return httpClient.build();
     }
+
+    /**
+     * 在子线程中运行
+     *
+     * @param baseUrl
+     * @param executorService
+     * @return
+     */
+    public static Retrofit init(String baseUrl, ExecutorService executorService) {
+        // 创建网络请求接口的实例
+        return new Retrofit.Builder()
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl(baseUrl)
+                .callbackExecutor(executorService)
+                .build();
+    }
+
     // ===============================================
 
 

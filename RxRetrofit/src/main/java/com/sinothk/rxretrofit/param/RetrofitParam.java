@@ -1,4 +1,4 @@
-package com.sinothk.rxretrofit;
+package com.sinothk.rxretrofit.param;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import okhttp3.RequestBody;
  * date   : 2018/11/1911:02
  * desc   :
  */
-public class RequestFactory {
+public class RetrofitParam {
 
     /**
      * 创建单文件参数
