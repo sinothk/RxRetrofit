@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 UserEntity user = new UserEntity();
                 user.setUserCode("18111316175541");
                 user.setUserName("SINOTHK");
+
                 RetrofitFactory.init(BaseApi.baseUrl).create(AllApi.class)
                         .updateUser(user)
                         .subscribeOn(Schedulers.io())
