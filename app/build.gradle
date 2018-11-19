@@ -27,8 +27,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation project(':RxRetrofit')
-//    implementation 'com.github.sinothk:RxRetrofit:1.8.0822'
-//    implementation 'com.github.sinothk:RxRetrofit:2.2.181119'
+
+//    implementation 'com.github.sinothk:RxRetrofit:2.3.181119'
 
     implementation 'io.reactivex:rxandroid:1.2.1'
     implementation 'io.reactivex:rxjava:1.2.1'

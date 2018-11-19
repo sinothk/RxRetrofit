@@ -5,7 +5,6 @@ import com.sinothk.rxRetrofit.demo.bean.UserEntity;
 import com.sinothk.rxretrofit.bean.PageData;
 import com.sinothk.rxretrofit.bean.ResultData;
 
-import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +21,6 @@ import retrofit2.http.PartMap;
 import retrofit2.http.Query;
 import retrofit2.http.Streaming;
 import retrofit2.http.Url;
-import rx.Completable;
 import rx.Observable;
 
 /**
