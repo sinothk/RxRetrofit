@@ -27,6 +27,6 @@ dependencies {
 
     implementation project(':RxRetrofit')
 
-//    implementation 'com.github.sinothk:RxRetrofit:2.9.1120'
+//    implementation 'com.github.sinothk:RxRetrofit:3.0.1119'
 
 }
