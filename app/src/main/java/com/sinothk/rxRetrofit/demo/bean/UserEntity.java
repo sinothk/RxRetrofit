@@ -2,6 +2,7 @@ package com.sinothk.rxRetrofit.demo.bean;
 
 public class UserEntity {
     private int id;
+    private String userCode; // 编号
     private String userName;
 
     public UserEntity() {
@@ -21,5 +22,13 @@ public class UserEntity {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getUserCode() {
+        return userCode;
+    }
+
+    public void setUserCode(String userCode) {
+        this.userCode = userCode;
     }
 }
