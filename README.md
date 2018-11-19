@@ -102,10 +102,12 @@ RxRetrofit
  
 # 上传：
    ## 单文件
+    API：
     @Multipart
     @POST("slogan/user/updateUserAvatar")
     Observable<ResultData<UserEntity>> uploadFile(@Query("userCode") String userCode, @Part MultipartBody.Part file);
     
+    java:
     // 传单文件文件和键值对
     File file = new File("/storage/emulated/0/Download/wKgANVvEPSeASGEFAAQ7wQP8jK4342.png");
     RetrofitFactory.init(BaseApi.baseUrl).create(AllApi.class)
@@ -118,5 +120,72 @@ RxRetrofit
     @PostMapping("/updateUserAvatar")
     public ResultData updateUserAvatar(@RequestParam("userCode") String userCode, @RequestParam("file") MultipartFile avatarFile){}
     
+  ## 多文件
+    API:
+    @Multipart
+    @POST("slogan/user/sendDaily")
+    Observable<ResultData<UserEntity>> sendDaily(@Query("userCode") String userCode,  @PartMap() Map<String, RequestBody> maps);
     
-            
+    java:
+    // 传单文件文件和实体
+    File file = new File("/storage/emulated/0/Download/wKgANVvEPSeASGEFAAQ7wQP8jK4342.png");
+        ArrayList<File> files = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            files.add(file);
+        }
+
+    RetrofitFactory.init(BaseApi.baseUrl).create(AllApi.class)
+    .sendDaily("381518188", RetrofitParam.createFileListParam("file", files))
+    .subscribeOn(Schedulers.io())
+    .observeOn(AndroidSchedulers.mainThread())
+    .subscribe(new Subscriber<ResultData<UserEntity>>() {
+    });
+    
+    后台：
+    @PostMapping("/sendDaily")
+    public ResultData sendDaily(@RequestParam("userCode") String userCode, @RequestParam("file") MultipartFile[] files) {
+        if (files != null) {
+            try {
+                for (int i = 0; i < files.length; i++) {
+                    File localFile = new File("D:/" + files[i].getOriginalFilename());
+                    files[i].transferTo(localFile);
+                }
+            } catch (IllegalStateException | IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            return ResultData.getError(ErrorCode.OPERATE_ERROR);
+        }
+    }
+    
+  ## 下载文件
+    API：
+        @Streaming
+        @GET
+        Call<ResponseBody> download(@Url String url);
+    
+    Java:
+        // 文件下载
+        String url = "c72c378e0a5d827ebd94d2c880da01ec.apk?attname=mgdj-release_2.6.3_19_1112.apk&sign=c64d18d5db3ee659c5962e9e3a52c643&t=5bf2783d";
+        String path = "/storage/emulated/0/Download/21212.apk";
+
+        RetrofitFactory
+        .init("http://app-global.pgyer.com/", Executors.newSingleThreadExecutor())
+        .create(AllApi.class)
+        .download(url)
+        .enqueue(new DownloadCallback(MainActivity.this, path) {
+            @Override
+            public void onStart() { 
+            }
+            @Override
+            public void onProgress(long currSize, long totalSize, int progress) {
+            }
+            @Override
+            public void onFinish(String path) {
+            }
+            @Override
+            public void onFail(String errorInfo) {
+            }
+        });
+  
+  
