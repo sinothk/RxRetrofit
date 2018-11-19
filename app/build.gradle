@@ -26,4 +26,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation project(':RxRetrofit')
+
+//    implementation 'com.github.sinothk:RxRetrofit:2.6.1120'
+
+
 }
