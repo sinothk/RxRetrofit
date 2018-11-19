@@ -170,7 +170,6 @@ public class MainActivity extends AppCompatActivity {
                         .enqueue(new DownloadCallback(MainActivity.this, path) {
                             @Override
                             public void onStart() {
-                                //运行在子线程
                                 Log.e("DownloadUtil", "onStart");
                                 toastUtil("onStart");
                             }
@@ -182,7 +181,6 @@ public class MainActivity extends AppCompatActivity {
 
                             @Override
                             public void onFinish(String path) {
-                                //运行在子线程
                                 Log.e("DownloadUtil", "onFinish：path = " + path);
 
                                 toastUtil("progress = " + path);
@@ -190,7 +188,6 @@ public class MainActivity extends AppCompatActivity {
 
                             @Override
                             public void onFail(String errorInfo) {
-                                //运行在子线程
                                 Log.e("DownloadUtil", "onFail：errorInfo = " + errorInfo);
                                 toastUtil("progress = " + errorInfo);
                             }
