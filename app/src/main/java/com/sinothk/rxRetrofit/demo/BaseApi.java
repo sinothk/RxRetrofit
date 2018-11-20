@@ -12,7 +12,7 @@ import java.util.HashMap;
  */
 public class BaseApi {
 
-    public static String baseUrl = "http://192.168.2.135:8888/";
+    public static String baseUrl = "http://192.168.124.19:8888/";
 
     public static HashMap<String, String> getHeaderData() {
         HashMap<String, String> headerDataMap = new HashMap<>();
