@@ -1,10 +1,15 @@
 # RxRetrofit
-RxRetrofit
+# 依赖
+    maven { url 'https://jitpack.io' }
+
+    implementation 'com.github.sinothk:RxRetrofit:3.5.1120'
 
 # 初始化：
-    RetrofitFactory.init(BaseApi.baseUrl);
-    RetrofitFactory.init(BaseApi.baseUrl, BaseApi.getHeaderData());
-
+    RetrofitFactory.init(BaseApi.baseUrl).***
+    RetrofitFactory.init(BaseApi.baseUrl, BaseApi.getHeaderData()).***
+    // 下载使用
+    RetrofitFactory.init(BaseApi.baseUrl, Executors.newSingleThreadExecutor()).***
+    
   ## BaseApi
     public class BaseApi {
 
