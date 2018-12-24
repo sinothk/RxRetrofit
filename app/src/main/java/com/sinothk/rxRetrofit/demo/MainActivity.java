@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.sinothk.rxRetrofit.demo.api.AllApi;
+import com.sinothk.rxRetrofit.demo.bean.UserBean;
 import com.sinothk.rxRetrofit.demo.bean.UserEntity;
+import com.sinothk.rxretrofit.RxRetrofit;
 import com.sinothk.rxretrofit.param.RetrofitParam;
 import com.sinothk.rxretrofit.bean.PageData;
 import com.sinothk.rxretrofit.bean.ResultData;
@@ -17,6 +19,7 @@ import com.sinothk.rxretrofit.RetrofitFactory;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.Executors;
 
@@ -36,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // 分页：
-                RetrofitFactory.init(BaseApi.baseUrl).create(AllApi.class)
+                RxRetrofit.init(BaseApi.baseUrl).create(AllApi.class)
                         .findUsersByKeyword("38")
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
@@ -68,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 user.setUserCode("18111316175541");
                 user.setUserName("SINOTHK");
 
-                RetrofitFactory.init(BaseApi.baseUrl).create(AllApi.class)
+                RxRetrofit.init(BaseApi.baseUrl).create(AllApi.class)
                         .updateUser(user)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
@@ -97,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // 传单文件文件和键值对
                 File file = new File("/storage/emulated/0/Download/wKgANVvEPSeASGEFAAQ7wQP8jK4342.png");
-                RetrofitFactory.init(BaseApi.baseUrl).create(AllApi.class)
+                RxRetrofit.init(BaseApi.baseUrl).create(AllApi.class)
                         .uploadFile("381518188", RetrofitParam.createFileParam("file", file))
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
@@ -125,14 +128,14 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.multiFileBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 传单文件文件和实体
+                // 传多文件和实体
                 File file = new File("/storage/emulated/0/Download/wKgANVvEPSeASGEFAAQ7wQP8jK4342.png");
                 ArrayList<File> files = new ArrayList<>();
                 for (int i = 0; i < 3; i++) {
                     files.add(file);
                 }
 
-                RetrofitFactory.init(BaseApi.baseUrl).create(AllApi.class)
+                RxRetrofit.init(BaseApi.baseUrl).create(AllApi.class)
                         .sendDaily("381518188", RetrofitParam.createFileListParam("file", files))
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
@@ -161,10 +164,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // 文件下载
-                String url = "c72c378e0a5d827ebd94d2c880da01ec.apk?attname=mgdj-release_2.6.3_19_1112.apk&sign=c64d18d5db3ee659c5962e9e3a52c643&t=5bf2783d";
+                String url = "933cf91f8f45c1342d472bb0ef757ebc.apk?attname=MGDJ_v2.8.3_30_release_2018-12-10.apk&sign=3ef6e3c0bcaba4d9004ebfb4228de286&t=5c211021";
                 String path = "/storage/emulated/0/Download/21212.apk";
 
-                RetrofitFactory
+                RxRetrofit
                         .init("http://app-global.pgyer.com/", Executors.newSingleThreadExecutor())
                         .create(AllApi.class)
                         .download(url)
@@ -178,6 +181,10 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onProgress(long currSize, long totalSize, int progress) {
                                 Log.e("DownloadUtil", "progress = " + progress + ", currSize=" + currSize + ", totalSize=" + totalSize);
+
+                                if (currSize == totalSize) {
+                                    toastUtil("OK");
+                                }
                             }
 
                             @Override
@@ -191,6 +198,64 @@ public class MainActivity extends AppCompatActivity {
                             public void onFail(String errorInfo) {
                                 Log.e("DownloadUtil", "onFail：errorInfo = " + errorInfo);
                                 toastUtil("progress = " + errorInfo);
+                            }
+                        });
+            }
+        });
+
+        findViewById(R.id.findPageDataBtn2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RxRetrofit.init("http://192.168.2.135:9999/").create(AllApi.class)
+                        .login()
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Subscriber<ResultData<UserBean>>() {
+                            @Override
+                            public void onCompleted() {
+                                Toast.makeText(MainActivity.this, "onCompleted", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                Toast.makeText(MainActivity.this, "onError", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onNext(ResultData<UserBean> resultData) {
+                                if (resultData != null) {
+                                }
+                            }
+                        });
+            }
+        });
+
+        findViewById(R.id.addHeardBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HashMap<String, String> map = new HashMap<>();
+                map.put("h1", "111");
+                map.put("h2", "222");
+
+                RxRetrofit.init("http://192.168.2.135:9999/", map).create(AllApi.class)
+                        .login()
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Subscriber<ResultData<UserBean>>() {
+                            @Override
+                            public void onCompleted() {
+                                Toast.makeText(MainActivity.this, "onCompleted", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                Toast.makeText(MainActivity.this, "onError", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onNext(ResultData<UserBean> resultData) {
+                                if (resultData != null) {
+                                }
                             }
                         });
             }

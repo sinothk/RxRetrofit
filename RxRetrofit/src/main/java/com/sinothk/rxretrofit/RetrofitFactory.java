@@ -2,11 +2,12 @@ package com.sinothk.rxretrofit;
 
 import android.support.annotation.NonNull;
 
+import com.sinothk.rxretrofit.interceptor.RetrofitLogInterceptor;
+
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Headers;
 import okhttp3.Interceptor;
@@ -21,10 +22,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * author : 梁玉涛
  * e-mail : 381518188@qq.com
  * date   : 2018/11/1911:02
- * desc   :
+ * desc   : 弃用，使用 RxRetrofit 代替！
  */
+@Deprecated
 public class RetrofitFactory {
 
+    // =========================================================================
+    @Deprecated
     public static Retrofit init(String baseUrl) {
         // 创建网络请求接口的实例
         return new Retrofit.Builder()
@@ -41,6 +45,7 @@ public class RetrofitFactory {
      * @param headerDataMap 请求头键值对
      * @return
      */
+    @Deprecated
     public static Retrofit init(String baseUrl, HashMap<String, String> headerDataMap) {
         if (headerDataMap != null && !headerDataMap.isEmpty()) {
 
@@ -68,6 +73,7 @@ public class RetrofitFactory {
      * @param headerDataMap 请求头键值对
      * @return
      */
+    @Deprecated
     private static OkHttpClient createHeaders(HashMap<String, String> headerDataMap) {
 
         final Headers headers = Headers.of(headerDataMap);
@@ -76,6 +82,7 @@ public class RetrofitFactory {
         httpClient.addInterceptor(new Interceptor() {
             @Override
             public Response intercept(@NonNull Interceptor.Chain chain) throws IOException {
+
                 Request original = chain.request();
 
                 Request request = original.newBuilder()
@@ -85,6 +92,8 @@ public class RetrofitFactory {
 
                 return chain.proceed(request);
             }
+
+
         });
 
         return httpClient.build();
@@ -97,6 +106,7 @@ public class RetrofitFactory {
      * @param executorService
      * @return
      */
+    @Deprecated
     public static Retrofit init(String baseUrl, ExecutorService executorService) {
         // 创建网络请求接口的实例
         return new Retrofit.Builder()

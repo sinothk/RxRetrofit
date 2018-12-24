@@ -41,6 +41,18 @@
             android:layout_height="wrap_content"
             android:text="文件下载" />
 
+        <Button
+            android:id="@+id/findPageDataBtn2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="获取分页数据2" />
+
+        <Button
+            android:id="@+id/addHeardBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="添加请求头" />
+
     </LinearLayout>
 
 </ScrollView>

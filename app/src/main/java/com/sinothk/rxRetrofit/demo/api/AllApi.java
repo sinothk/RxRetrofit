@@ -1,6 +1,7 @@
 package com.sinothk.rxRetrofit.demo.api;
 
 
+import com.sinothk.rxRetrofit.demo.bean.UserBean;
 import com.sinothk.rxRetrofit.demo.bean.UserEntity;
 import com.sinothk.rxretrofit.bean.PageData;
 import com.sinothk.rxretrofit.bean.ResultData;
@@ -59,4 +60,8 @@ public interface AllApi {
     @Streaming
     @GET
     Call<ResponseBody> download(@Url String url);
+
+    // =====================================
+    @GET("hand_in_hand/user/login")
+    Observable<ResultData<UserBean>> login();
 }
