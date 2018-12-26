@@ -2,7 +2,7 @@
 # 依赖
     maven { url 'https://jitpack.io' }
 
-    implementation 'com.github.sinothk:RxRetrofit:3.5.1120'
+    implementation 'com.github.sinothk:RxRetrofit:3.6.1225'
 
 # 初始化：
     RetrofitFactory.init(BaseApi.baseUrl).***
@@ -31,7 +31,7 @@
         Observable<ResultData<PageData<List<UserEntity>>>> findUsersByKeyword(@Query("keyword") String keyword);
   
    ## JAVA:
-          RetrofitFactory.init(BaseApi.baseUrl).create(NearbyApi.class)
+          RxRetrofit.init(BaseApi.baseUrl).create(NearbyApi.class)
           .findUsersByKeyword("keyword")
           .subscribeOn(Schedulers.io())
           .observeOn(AndroidSchedulers.mainThread())
@@ -76,7 +76,7 @@
     user.setId(111);
     user.setUserName("LiangYT");
 
-    RetrofitFactory.init(BaseApi.baseUrl).create(NearbyApi.class)
+    RxRetrofit.init(BaseApi.baseUrl).create(NearbyApi.class)
             .updateUser(user)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -115,7 +115,7 @@
     java:
     // 传单文件文件和键值对
     File file = new File("/storage/emulated/0/Download/wKgANVvEPSeASGEFAAQ7wQP8jK4342.png");
-    RetrofitFactory.init(BaseApi.baseUrl).create(AllApi.class)
+    RxRetrofit.init(BaseApi.baseUrl).create(AllApi.class)
             .uploadFile("381518188", RetrofitParam.createFileParam("file", file))
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -139,7 +139,7 @@
             files.add(file);
         }
 
-    RetrofitFactory.init(BaseApi.baseUrl).create(AllApi.class)
+    RxRetrofit.init(BaseApi.baseUrl).create(AllApi.class)
     .sendDaily("381518188", RetrofitParam.createFileListParam("file", files))
     .subscribeOn(Schedulers.io())
     .observeOn(AndroidSchedulers.mainThread())
@@ -174,7 +174,7 @@
         String url = "c72c378e0a5d827ebd94d2c880da01ec.apk?attname=mgdj-release_2.6.3_19_1112.apk&sign=c64d18d5db3ee659c5962e9e3a52c643&t=5bf2783d";
         String path = "/storage/emulated/0/Download/21212.apk";
 
-        RetrofitFactory
+        RxRetrofit
         .init("http://app-global.pgyer.com/", Executors.newSingleThreadExecutor())
         .create(AllApi.class)
         .download(url)
