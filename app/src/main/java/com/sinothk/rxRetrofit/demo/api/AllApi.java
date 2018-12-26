@@ -15,6 +15,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -34,9 +35,9 @@ import rx.Observable;
  */
 public interface AllApi {
 
-//    @Headers("apikey:b86c2269fe6588bbe3b41924bb2f2da2")
+//    @Headers(value = "apikey:" + getH())
 //    @GET("open/api/weather/json.shtml")
-//    Call<RootData<PageInfo<UserBean>>> weather(@Query("city") String cityName);
+//    Call<ResultData<PageData<UserBean>>> weather(@Query("city") String cityName);
 
 //    @POST("ol/user/findUsersByKeyword")
 //    Observable<ResultData<List<UserEntity>>> findUsersByKeyword(@Query("keyword") String keyword); //@Body RequestBody jsonBody
@@ -63,5 +64,8 @@ public interface AllApi {
 
     // =====================================
     @GET("hand_in_hand/user/login")
-    Observable<ResultData<UserBean>> login();
+    Observable<ResultData<UserBean>> login(@Query("code") String code);
+
+    @POST("hand_in_hand/user/findUserByUserCode")
+    Observable<ResultData<UserBean>> findUserByUserCode(@Query("keyword") String keyword);
 }

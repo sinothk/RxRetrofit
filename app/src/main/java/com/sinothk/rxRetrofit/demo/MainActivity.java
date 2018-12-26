@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // 文件下载
-                String url = "933cf91f8f45c1342d472bb0ef757ebc.apk?attname=MGDJ_v2.8.3_30_release_2018-12-10.apk&sign=3ef6e3c0bcaba4d9004ebfb4228de286&t=5c211021";
+                String url = "933cf91f8f45c1342d472bb0ef757ebc.apk?attname=MGDJ_v2.8.3_30_release_2018-12-10.apk&sign=a5fe3ab1ae0710475a8ded7f2fbc8bdc&t=5c231fc6";
                 String path = "/storage/emulated/0/Download/21212.apk";
 
                 RxRetrofit
@@ -206,8 +206,8 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.findPageDataBtn2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RxRetrofit.init("http://192.168.2.135:9999/").create(AllApi.class)
-                        .login()
+                RxRetrofit.init("http://192.168.124.33:9999/").create(AllApi.class)
+                        .login("381518188")
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(new Subscriber<ResultData<UserBean>>() {
@@ -237,8 +237,8 @@ public class MainActivity extends AppCompatActivity {
                 map.put("h1", "111");
                 map.put("h2", "222");
 
-                RxRetrofit.init("http://192.168.2.135:9999/", map).create(AllApi.class)
-                        .login()
+                RxRetrofit.init("http://192.168.124.33:9999/", map).create(AllApi.class)
+                        .findUserByUserCode("中国")
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(new Subscriber<ResultData<UserBean>>() {
