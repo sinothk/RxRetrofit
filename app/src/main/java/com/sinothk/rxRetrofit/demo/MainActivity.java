@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // 文件下载
-                String url = "933cf91f8f45c1342d472bb0ef757ebc.apk?attname=MGDJ_v2.8.3_30_release_2018-12-10.apk&sign=a5fe3ab1ae0710475a8ded7f2fbc8bdc&t=5c231fc6";
+                String url = "933cf91f8f45c1342d472bb0ef757ebc.apk?attname=MGDJ_v2.8.3_30_release_2018-12-10.apk&sign=1113c52263ca8fb24e4158ea7b11af91&t=5c2324ce";
                 String path = "/storage/emulated/0/Download/21212.apk";
 
                 RxRetrofit
