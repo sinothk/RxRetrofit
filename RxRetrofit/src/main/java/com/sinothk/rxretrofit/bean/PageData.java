@@ -1,7 +1,7 @@
 package com.sinothk.rxretrofit.bean;
 
 public class PageData<T> {
-
+    private int pageSize;
     private int pageIndex;
     private boolean haveNext;
     private T data;
@@ -28,5 +28,13 @@ public class PageData<T> {
 
     public void setData(T data) {
         this.data = data;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
     }
 }
