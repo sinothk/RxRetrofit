@@ -4,6 +4,7 @@ public class PageData<T> {
     private int pageSize;
     private int pageIndex;
     private boolean haveNext;
+    private long total;
     private T data;
 
     public int getPageIndex() {
@@ -36,5 +37,13 @@ public class PageData<T> {
 
     public void setPageSize(int pageSize) {
         this.pageSize = pageSize;
+    }
+
+    public long getTotal() {
+        return total;
+    }
+
+    public void setTotal(long total) {
+        this.total = total;
     }
 }
