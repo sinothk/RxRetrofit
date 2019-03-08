@@ -58,19 +58,14 @@ public class RxRetrofit {
         if (headerMap == null || headerMap.isEmpty()) {
             return init(baseUrl);
         } else {
-//            OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
-//                    .addInterceptor(new LogHeaderInterceptor(headerMap, true));
-//            OkHttpClient okHttpClient = httpClient.build();
+            OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
+                    .addInterceptor(new LogHeaderInterceptor(headerMap, true));
 
-            // 2019年3月8日 09:36:45
-
-            OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                    .connectTimeout(15, TimeUnit.SECONDS)
+            httpClient.connectTimeout(15, TimeUnit.SECONDS)
                     .readTimeout(2, TimeUnit.MINUTES)
-                    .writeTimeout(2, TimeUnit.MINUTES)
-                    .retryOnConnectionFailure(false)
-                    .addInterceptor(new LogHeaderInterceptor(headerMap,true)
-                    ).build();
+                    .writeTimeout(2, TimeUnit.MINUTES);
+
+            OkHttpClient okHttpClient = httpClient.build();
 
             return new Retrofit.Builder()
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
@@ -90,9 +85,9 @@ public class RxRetrofit {
      */
     public static Retrofit init(String baseUrl, ExecutorService executorService) {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .connectTimeout(15, TimeUnit.SECONDS)
-                .readTimeout(20, TimeUnit.SECONDS)
-                .writeTimeout(20, TimeUnit.SECONDS)
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(5, TimeUnit.MINUTES)
+                .writeTimeout(5, TimeUnit.MINUTES)
                 .retryOnConnectionFailure(false)
                 .addInterceptor(new DownLoadInterceptor()).build();
 
