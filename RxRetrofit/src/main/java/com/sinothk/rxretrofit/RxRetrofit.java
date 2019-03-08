@@ -1,19 +1,13 @@
 package com.sinothk.rxretrofit;
 
-import android.util.Log;
-
 import com.sinothk.rxretrofit.interceptor.DownLoadInterceptor;
 import com.sinothk.rxretrofit.interceptor.LogHeaderInterceptor;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -38,8 +32,8 @@ public class RxRetrofit {
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(15, TimeUnit.SECONDS)
-                .readTimeout(20, TimeUnit.SECONDS)
-                .writeTimeout(20, TimeUnit.SECONDS)
+                .readTimeout(2, TimeUnit.MINUTES)
+                .writeTimeout(2, TimeUnit.MINUTES)
                 .retryOnConnectionFailure(false)
                 .addInterceptor(new LogHeaderInterceptor(true)
                 ).build();
@@ -64,10 +58,19 @@ public class RxRetrofit {
         if (headerMap == null || headerMap.isEmpty()) {
             return init(baseUrl);
         } else {
-            OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
-                    .addInterceptor(new LogHeaderInterceptor(headerMap, true));
+//            OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
+//                    .addInterceptor(new LogHeaderInterceptor(headerMap, true));
+//            OkHttpClient okHttpClient = httpClient.build();
 
-            OkHttpClient okHttpClient = httpClient.build();
+            // 2019年3月8日 09:36:45
+
+            OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                    .connectTimeout(15, TimeUnit.SECONDS)
+                    .readTimeout(2, TimeUnit.MINUTES)
+                    .writeTimeout(2, TimeUnit.MINUTES)
+                    .retryOnConnectionFailure(false)
+                    .addInterceptor(new LogHeaderInterceptor(headerMap,true)
+                    ).build();
 
             return new Retrofit.Builder()
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
