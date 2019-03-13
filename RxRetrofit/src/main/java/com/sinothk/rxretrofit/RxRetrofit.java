@@ -1,5 +1,6 @@
 package com.sinothk.rxretrofit;
 
+import com.sinothk.rxretrofit.converterFactorys.FastJsonConverterFactory;
 import com.sinothk.rxretrofit.interceptor.DownLoadInterceptor;
 import com.sinothk.rxretrofit.interceptor.LogHeaderInterceptor;
 
@@ -41,7 +42,7 @@ public class RxRetrofit {
         // 创建网络请求接口的实例
         return new Retrofit.Builder()
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(FastJsonConverterFactory.create())
                 .baseUrl(baseUrl)
                 .client(okHttpClient)//此client是为了打印信息
                 .build();
@@ -69,7 +70,7 @@ public class RxRetrofit {
 
             return new Retrofit.Builder()
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(FastJsonConverterFactory.create())
                     .baseUrl(baseUrl)
                     .client(okHttpClient)
                     .build();
@@ -94,7 +95,7 @@ public class RxRetrofit {
         // 创建网络请求接口的实例
         return new Retrofit.Builder()
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(FastJsonConverterFactory.create()) //GsonConverterFactory
                 .baseUrl(baseUrl)
                 .client(okHttpClient)//此client是为了打印信息
                 .callbackExecutor(executorService)
