@@ -1,5 +1,6 @@
 package com.sinothk.rxretrofit;
 
+import com.alibaba.fastjson.support.retrofit.Retrofit2ConverterFactory;
 import com.sinothk.rxretrofit.converterFactorys.FastJsonConverterFactory;
 import com.sinothk.rxretrofit.interceptor.DownLoadInterceptor;
 import com.sinothk.rxretrofit.interceptor.LogHeaderInterceptor;
@@ -11,7 +12,6 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * <pre>
@@ -42,7 +42,7 @@ public class RxRetrofit {
         // 创建网络请求接口的实例
         return new Retrofit.Builder()
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(FastJsonConverterFactory.create())
+                .addConverterFactory(new Retrofit2ConverterFactory())
                 .baseUrl(baseUrl)
                 .client(okHttpClient)//此client是为了打印信息
                 .build();
@@ -70,7 +70,7 @@ public class RxRetrofit {
 
             return new Retrofit.Builder()
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                    .addConverterFactory(FastJsonConverterFactory.create())
+                    .addConverterFactory(new Retrofit2ConverterFactory())//FastJsonConverterFactory.create() GsonConverterFactory
                     .baseUrl(baseUrl)
                     .client(okHttpClient)
                     .build();
