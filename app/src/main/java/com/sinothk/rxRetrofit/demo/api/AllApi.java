@@ -43,8 +43,8 @@ public interface AllApi {
 //    Observable<ResultData<List<UserEntity>>> findUsersByKeyword(@Query("keyword") String keyword); //@Body RequestBody jsonBody
 
 
-    @POST("slogan/user/findUsersByKeyword")
-    Observable<ResultData<PageData<List<UserEntity>>>> findUsersByKeyword(@Query("keyword") String keyword);
+    @POST("amor/serial/activateSerialNumber")
+    Observable<ResultData<String>> activateSerialNumber(@Query("serialNumber") String serialNumber, @Query("userAccount") String userAccount);//@Query("keyword") String keyword
 
     @POST("slogan/user/updateUser")
     Observable<ResultData<UserEntity>> updateUser(@Body UserEntity user);

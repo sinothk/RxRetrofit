@@ -12,7 +12,7 @@ import java.util.HashMap;
  */
 public class BaseApi {
 
-    public static String baseUrl = "http://192.168.124.19:8888/";
+    public static String baseUrl = "http://192.168.124.16:80/"; // http://127.0.0.1:8888/amor/version/getLastVersionInfo
 
     public static HashMap<String, String> getHeaderData() {
         HashMap<String, String> headerDataMap = new HashMap<>();

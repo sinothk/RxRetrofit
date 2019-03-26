@@ -40,10 +40,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // 分页：
                 RxRetrofit.init(BaseApi.baseUrl).create(AllApi.class)
-                        .findUsersByKeyword("38")
+                        .activateSerialNumber("111111111111", "22222222222222222")
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Subscriber<ResultData<PageData<List<UserEntity>>>>() {
+                        .subscribe(new Subscriber<ResultData<String>>() {
                             @Override
                             public void onCompleted() {
                                 Toast.makeText(MainActivity.this, "onCompleted", Toast.LENGTH_SHORT).show();
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                             }
 
                             @Override
-                            public void onNext(ResultData<PageData<List<UserEntity>>> resultData) {
+                            public void onNext(ResultData<String> resultData) {
                                 if (resultData != null) {
                                 }
                             }
