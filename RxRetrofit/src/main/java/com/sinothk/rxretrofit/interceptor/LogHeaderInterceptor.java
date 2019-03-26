@@ -3,8 +3,6 @@ package com.sinothk.rxretrofit.interceptor;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.sinothk.rxretrofit.BuildConfig;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Set;
@@ -27,15 +25,17 @@ import okhttp3.ResponseBody;
 public class LogHeaderInterceptor implements Interceptor {
 
     private HashMap<String, String> headerMap;
-    private boolean needResult;
+    private boolean needResult, isPrintLog;
 
-    public LogHeaderInterceptor(HashMap<String, String> headerMap, boolean needResult) {
+    public LogHeaderInterceptor(boolean needResult, HashMap<String, String> headerMap, boolean isPrintLog) {
         this.headerMap = headerMap;
         this.needResult = needResult;
+        this.isPrintLog = isPrintLog;
     }
 
-    public LogHeaderInterceptor(boolean needResult) {
+    public LogHeaderInterceptor(boolean needResult, boolean isPrintLog) {
         this.needResult = needResult;
+        this.isPrintLog = isPrintLog;
     }
 
     @Override
@@ -78,10 +78,11 @@ public class LogHeaderInterceptor implements Interceptor {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                if (BuildConfig.DEBUG) {
+                if (isPrintLog) {
+
+                    String TAG = "RxRetrofitLog";
+                    Log.d(TAG, "RxRetrofit > =====================开始=======================");
                     try {
-                        String TAG = "RxRetrofitLog";
-                        Log.d(TAG, "RxRetrofit > =====================开始=======================");
                         // url
                         String url = signedRequest.url().toString();
                         Log.d(TAG, "RxRetrofit > 地址: " + url);
@@ -108,10 +109,11 @@ public class LogHeaderInterceptor implements Interceptor {
                         } else {
                             Log.d(TAG, "RxRetrofit > 返回: 无需打印！");
                         }
-                        Log.d(TAG, "RxRetrofit > =====================结束=======================");
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        Log.d(TAG, "RxRetrofit > 报错\n" + e.getMessage());
                     }
+
+                    Log.d(TAG, "RxRetrofit > =====================结束=======================");
                 }
             }
         }).start();
