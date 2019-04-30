@@ -1,6 +1,6 @@
 package com.sinothk.rxretrofit.bean;
 
-public class PageData<T> {
+public class PageData<T>{
     private int pageSize;
     private int pageIndex;
     private boolean haveNext;

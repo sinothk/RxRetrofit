@@ -104,8 +104,21 @@ public class LogHeaderInterceptor implements Interceptor {
                         }
 
                         Log.d(TAG, "RxRetrofit > 耗时: " + time + "毫秒");
+
                         if (needResult) {
-                            Log.d(TAG, "RxRetrofit > 返回: ↓\n" + responseBodyStr);
+                            if (responseBodyStr.length() > 4000) {
+                                Log.d(TAG, "RxRetrofit > 返回: ↓\n");
+
+                                for (int i = 0; i < responseBodyStr.length(); i += 4000) {
+                                    if (i + 4000 < responseBodyStr.length()) {
+                                        Log.d(TAG, responseBodyStr.substring(i, i + 4000));
+                                    } else {
+                                        Log.d(TAG, responseBodyStr.substring(i, responseBodyStr.length()));
+                                    }
+                                }
+                            } else {
+                                Log.d(TAG, "RxRetrofit > 返回: ↓\n" + responseBodyStr);
+                            }
                         } else {
                             Log.d(TAG, "RxRetrofit > 返回: 无需打印！");
                         }

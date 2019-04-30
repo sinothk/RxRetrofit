@@ -9,18 +9,15 @@ import android.widget.Toast;
 import com.sinothk.rxRetrofit.demo.api.AllApi;
 import com.sinothk.rxRetrofit.demo.bean.UserBean;
 import com.sinothk.rxRetrofit.demo.bean.UserEntity;
+import com.sinothk.rxRetrofitDemo.R;
 import com.sinothk.rxretrofit.RxRetrofit;
-import com.sinothk.rxretrofit.param.RetrofitParam;
-import com.sinothk.rxretrofit.bean.PageData;
 import com.sinothk.rxretrofit.bean.ResultData;
 import com.sinothk.rxretrofit.callback.DownloadCallback;
-import com.sinothk.rxRetrofitDemo.R;
-import com.sinothk.rxretrofit.RetrofitFactory;
+import com.sinothk.rxretrofit.param.RetrofitParam;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.concurrent.Executors;
 
 import rx.Subscriber;
