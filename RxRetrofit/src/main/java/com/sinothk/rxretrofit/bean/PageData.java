@@ -1,5 +1,20 @@
 package com.sinothk.rxretrofit.bean;
 
+/**
+ * @deprecated 使用PageInfo替换接收数据，后台要使用组装数据方式：
+ *
+ *              <dependency>
+ *                  <groupId>com.github.pagehelper</groupId>
+ *                  <artifactId>pagehelper-spring-boot-starter</artifactId>
+ *                  <version>1.2.10</version>
+ *              </dependency>
+ *
+ *             PageHelper.startPage(page.getPageIndex(), page.getPageSize());
+ *             ArrayList<LoginLogEntity> list = userMapper.findActiveUserList();
+ *             PageInfo<LoginLogEntity> pageInfo = new PageInfo<>(list);
+ *
+ */
+@Deprecated
 public class PageData<T>{
     private int pageSize;
     private int pageIndex;
