@@ -107,15 +107,17 @@ public class LogHeaderInterceptor implements Interceptor {
 
                         if (needResult) {
                             if (responseBodyStr.length() > 4000) {
-                                Log.d(TAG, "RxRetrofit > 返回: ↓\n");
 
+                                StringBuilder infoStr = new StringBuilder("RxRetrofit > 返回: ↓\n");
                                 for (int i = 0; i < responseBodyStr.length(); i += 4000) {
                                     if (i + 4000 < responseBodyStr.length()) {
-                                        Log.d(TAG, responseBodyStr.substring(i, i + 4000));
+                                        infoStr.append("\n").append(responseBodyStr.substring(i, i + 4000));
+
                                     } else {
-                                        Log.d(TAG, responseBodyStr.substring(i, responseBodyStr.length()));
+                                        infoStr.append("\n").append(responseBodyStr.substring(i));
                                     }
                                 }
+                                Log.d(TAG, infoStr.toString());
                             } else {
                                 Log.d(TAG, "RxRetrofit > 返回: ↓\n" + responseBodyStr);
                             }
