@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // 分页：
-                RxRetrofit.init(BaseApi.baseUrl, true).create(AllApi.class)
+                RxRetrofit.init(BaseApi.baseUrl).create(AllApi.class)
                         .activateSerialNumber("111111111111", "22222222222222222")
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
