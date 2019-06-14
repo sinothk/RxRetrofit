@@ -2,7 +2,7 @@
 # 依赖
     maven { url 'https://jitpack.io' }
 
-    implementation 'com.github.sinothk:RxRetrofit:6.6.0501	'
+    implementation 'com.github.sinothk:RxRetrofit:6.7.0613'
 
 # 初始化：
     RetrofitFactory.init(BaseApi.baseUrl).***
