@@ -104,14 +104,12 @@ public class LogHeaderInterceptor implements Interceptor {
                         }
 
                         Log.d(TAG, "RxRetrofit > 耗时: " + time + "毫秒");
-
                         if (needResult) {
-                            if (responseBodyStr.length() > 4000) {
-
+                            if (responseBodyStr.length() > 3600) {
                                 StringBuilder infoStr = new StringBuilder("RxRetrofit > 返回: ↓\n");
-                                for (int i = 0; i < responseBodyStr.length(); i += 4000) {
-                                    if (i + 4000 < responseBodyStr.length()) {
-                                        infoStr.append("\n").append(responseBodyStr.substring(i, i + 4000));
+                                for (int i = 0; i < responseBodyStr.length(); i += 3600) {
+                                    if (i + 3600 < responseBodyStr.length()) {
+                                        infoStr.append("\n").append(responseBodyStr.substring(i, i + 3600));
 
                                     } else {
                                         infoStr.append("\n").append(responseBodyStr.substring(i));
@@ -127,7 +125,6 @@ public class LogHeaderInterceptor implements Interceptor {
                     } catch (Exception e) {
                         Log.d(TAG, "RxRetrofit > 报错\n" + e.getMessage());
                     }
-
                     Log.d(TAG, "RxRetrofit > =====================结束=======================");
                 }
             }
