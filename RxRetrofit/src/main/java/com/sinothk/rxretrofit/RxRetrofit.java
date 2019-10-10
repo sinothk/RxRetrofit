@@ -348,6 +348,12 @@ public class RxRetrofit {
 
         return null;
     }
+
+    public static class Code {
+        public static int SUCCESS = 0;
+
+        public static int TOKEN_OVERDUE = 100;
+    }
 }
 
 
