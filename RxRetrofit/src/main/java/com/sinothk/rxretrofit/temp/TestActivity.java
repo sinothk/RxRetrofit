@@ -1,7 +1,8 @@
 package com.sinothk.rxretrofit.temp;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class TestActivity extends AppCompatActivity {

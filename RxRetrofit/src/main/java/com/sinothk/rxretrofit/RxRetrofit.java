@@ -350,8 +350,8 @@ public class RxRetrofit {
     }
 
     public static class Code {
-        public static int SUCCESS = 200;
-        public static int TOKEN_OVERDUE = 100;
+        public static int SUCCESS = 200; // 成功
+        public static int TOKEN_OVERDUE = 100;  // token 过期
     }
 }
 

@@ -1,7 +1,8 @@
 package com.sinothk.rxretrofit.interceptor;
 
-import android.support.annotation.NonNull;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import java.io.IOException;
 import java.util.HashMap;

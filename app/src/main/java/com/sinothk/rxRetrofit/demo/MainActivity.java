@@ -1,10 +1,11 @@
 package com.sinothk.rxRetrofit.demo;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.sinothk.rxRetrofit.demo.api.AllApi;
 import com.sinothk.rxRetrofit.demo.bean.UserBean;

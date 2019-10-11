@@ -1,6 +1,7 @@
 package com.sinothk.rxretrofit;
 
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import com.sinothk.rxretrofit.interceptor.RetrofitLogInterceptor;
 
