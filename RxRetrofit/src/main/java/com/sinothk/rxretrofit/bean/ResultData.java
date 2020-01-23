@@ -1,6 +1,10 @@
 package com.sinothk.rxretrofit.bean;
 
 public class ResultData<T> {
+
+    public static int SUCCESS = 200;
+    public static int TOKEN_OVERDUE = 100;
+
     private int code;
     private String msg;
     private T data;

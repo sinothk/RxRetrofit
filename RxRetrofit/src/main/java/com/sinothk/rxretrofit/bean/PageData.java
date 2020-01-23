@@ -23,7 +23,7 @@ public class PageData<T> implements Serializable {
     private int size;
 
     //总记录数
-    private long total;
+    private int total;
     //结果集
     private List<T> list;
 
@@ -222,11 +222,11 @@ public class PageData<T> implements Serializable {
 //        this.navigateLastPage = navigateLastPage;
 //    }
 
-    public long getTotal() {
+    public int getTotal() {
         return total;
     }
 
-    public void setTotal(long total) {
+    public void setTotal(int total) {
         this.total = total;
     }
 
