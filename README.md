@@ -1,9 +1,11 @@
 # RxRetrofit
 # 依赖
     maven { url 'https://jitpack.io' }
-
+    // 之前版本：不支持androidx
     implementation 'com.github.sinothk:RxRetrofit:6.7.0613'
-
+    
+    // 之前版本：引入Androidx
+    implementation 'com.github.sinothk:RxRetrofit:8.x.1010'
 # 初始化：
     RetrofitFactory.init(BaseApi.baseUrl).***
     RetrofitFactory.init(BaseApi.baseUrl, BaseApi.getHeaderData()).***
