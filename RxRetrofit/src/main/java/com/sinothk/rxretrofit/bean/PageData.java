@@ -1,6 +1,7 @@
 package com.sinothk.rxretrofit.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,7 +26,7 @@ public class PageData<T> implements Serializable {
     //总记录数
     private int total;
     //结果集
-    private List<T> list;
+    private ArrayList<T> list;
 
     //由于startRow和endRow不常用，这里说个具体的用法
     //可以在页面中"显示startRow到endRow 共size条数据"
@@ -230,11 +231,11 @@ public class PageData<T> implements Serializable {
         this.total = total;
     }
 
-    public List<T> getList() {
+    public ArrayList<T> getList() {
         return list;
     }
 
-    public void setList(List<T> list) {
+    public void setList(ArrayList<T> list) {
         this.list = list;
     }
 }
